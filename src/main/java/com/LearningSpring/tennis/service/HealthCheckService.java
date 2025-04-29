@@ -1,7 +1,7 @@
 package com.LearningSpring.tennis.service;
 
 import com.LearningSpring.tennis.repository.HealthCheckRepository;
-import com.LearningSpring.tennis.rest.ApplicationStatus;
+import com.LearningSpring.tennis.web.ApplicationStatus;
 import com.LearningSpring.tennis.HealthCheck;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

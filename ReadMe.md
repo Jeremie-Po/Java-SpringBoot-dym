@@ -19,6 +19,12 @@ http://localhost:8080/healthcheck
 
 ```
 
+* afficher le dependency tree
+
+```
+./mvnw dependency:tree  
+  ```
+
 ## Rappel Docker
 
 * Bd posgres de l'appli
@@ -44,4 +50,5 @@ services:
 docker-compose -f src/main/docker/postgresql.yml up
 
 ```
+
 

@@ -1,4 +1,4 @@
-package com.LearningSpring.tennis.rest;
+package com.LearningSpring.tennis.web;
 
 public enum ApplicationStatus {
     OK, KO;
