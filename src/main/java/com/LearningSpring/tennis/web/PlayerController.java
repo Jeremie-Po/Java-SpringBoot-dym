@@ -45,9 +45,9 @@ public class PlayerController {
         return null;
     }
 
-    @Operation(summary = "Add a player", description = "add a player")
+    @Operation(summary = "Create a player", description = "Create a player")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "created player",
+            @ApiResponse(responseCode = "200", description = "Created player",
                     content = {
                             @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = Player.class))
@@ -56,5 +56,26 @@ public class PlayerController {
     @PostMapping
     public Player createPlayer(@RequestBody Player player) {
         return player;
+    }
+
+    @Operation(summary = "Update a player", description = "Update a player")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "updated player",
+                    content = {
+                            @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = Player.class))
+                    })
+    })
+    @PutMapping
+    public Player updatePlayer(@RequestBody Player player) {
+        return player;
+    }
+
+    @Operation(summary = "Delete a player", description = "Delete a player")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Player has been deleted player")
+    })
+    @DeleteMapping("{lastName}")
+    public void deletePlayerByLastName(@PathVariable("lastName") String lastName) {
     }
 }
