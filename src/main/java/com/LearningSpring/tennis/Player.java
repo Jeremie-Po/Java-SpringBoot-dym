@@ -1,4 +1,6 @@
 package com.LearningSpring.tennis;
 
-public record Player() {
+import java.time.LocalDate;
+
+public record Player(String firstName, String lastName, LocalDate birthDate, Rank rank) {
 }
