@@ -1,6 +1,7 @@
 package com.LearningSpring.tennis.web;
 
 import com.LearningSpring.tennis.Player;
+import com.LearningSpring.tennis.PlayerList;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -29,7 +30,7 @@ public class PlayerController {
 
     @GetMapping
     public List<Player> list() {
-        return Collections.emptyList();
+        return PlayerList.ALL;
     }
 
     @Operation(summary = "find a player", description = "find a player")
@@ -42,7 +43,10 @@ public class PlayerController {
     })
     @GetMapping("{lastName}")
     public Player getByLastName(@PathVariable("lastName") String lastName) {
-        return null;
+        return PlayerList.ALL.stream()
+                .filter(player -> player.lastName().equals(lastName))
+                .findFirst()
+                .orElse(null);
     }
 
     @Operation(summary = "Create a player", description = "Create a player")
