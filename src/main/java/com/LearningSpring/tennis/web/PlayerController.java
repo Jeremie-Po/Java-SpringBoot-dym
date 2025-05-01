@@ -12,10 +12,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 @Tag(name = "Tennis Players API")
@@ -38,7 +36,7 @@ public class PlayerController {
     @GetMapping
     public List<Player> list() {
 
-        return playerService.getAllPlayers();
+        return playerService.getSortedPlayers();
     }
 
     @Operation(summary = "find a player", description = "find a player")
