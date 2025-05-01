@@ -2,6 +2,7 @@ package com.LearningSpring.tennis.web;
 
 import com.LearningSpring.tennis.Player;
 import com.LearningSpring.tennis.PlayerList;
+import com.LearningSpring.tennis.PlayerToRegister;
 import com.LearningSpring.tennis.service.PlayerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -62,12 +63,12 @@ public class PlayerController {
             @ApiResponse(responseCode = "200", description = "Created player",
                     content = {
                             @Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = Player.class))
+                                    schema = @Schema(implementation = PlayerToRegister.class))
                     })
     })
     @PostMapping
-    public Player createPlayer(@Valid @RequestBody Player player) {
-        return player;
+    public Player createPlayer(@Valid @RequestBody PlayerToRegister playerToRegister) {
+        return playerService.create(playerToRegister);
     }
 
     @Operation(summary = "Update a player", description = "Update a player")
