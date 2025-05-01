@@ -1,8 +1,7 @@
 package com.LearningSpring.tennis.web;
 
 import com.LearningSpring.tennis.Player;
-import com.LearningSpring.tennis.PlayerList;
-import com.LearningSpring.tennis.PlayerToRegister;
+import com.LearningSpring.tennis.PlayerToSave;
 import com.LearningSpring.tennis.service.PlayerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -63,12 +62,12 @@ public class PlayerController {
             @ApiResponse(responseCode = "200", description = "Created player",
                     content = {
                             @Content(mediaType = "application/json",
-                                    schema = @Schema(implementation = PlayerToRegister.class))
+                                    schema = @Schema(implementation = PlayerToSave.class))
                     })
     })
     @PostMapping
-    public Player createPlayer(@Valid @RequestBody PlayerToRegister playerToRegister) {
-        return playerService.create(playerToRegister);
+    public Player createPlayer(@Valid @RequestBody PlayerToSave playerToSave) {
+        return playerService.create(playerToSave);
     }
 
     @Operation(summary = "Update a player", description = "Update a player")
@@ -77,11 +76,16 @@ public class PlayerController {
                     content = {
                             @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = Player.class))
+                    }),
+            @ApiResponse(responseCode = "404", description = "player with specified last name was not found",
+                    content = {
+                            @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = Error.class))
                     })
     })
     @PutMapping
-    public Player updatePlayer(@Valid @RequestBody Player player) {
-        return player;
+    public Player updatePlayer(@Valid @RequestBody PlayerToSave playerToSave) {
+        return playerService.update(playerToSave);
     }
 
     @Operation(summary = "Delete a player", description = "Delete a player")
