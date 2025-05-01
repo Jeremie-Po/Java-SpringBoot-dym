@@ -1,5 +1,7 @@
 package com.LearningSpring.tennis.web;
 
+import com.LearningSpring.tennis.Error;
+import com.LearningSpring.tennis.service.PlayerNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -9,14 +11,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 @RestControllerAdvice
 public class PlayerControllerErrorHandler {
 
-    @ExceptionHandler(NoSuchElementException.class)
+    @ExceptionHandler(PlayerNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public void handleNoElementException() {
+    public Error handlePlayerNotFoundException(PlayerNotFoundException ex) {
+        return new Error(ex.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
